@@ -1,0 +1,123 @@
+{
+  "schema_version": "minmind_semantic_acquisition_manifest_v1",
+  "created_at": "2026-05-26",
+  "training_status": "not_started_pending_user_review",
+  "download_method": "local curl through http://127.0.0.1:7897",
+  "remote_training_host_status": "huggingface_dns_or_proxy_unavailable",
+  "raw_metadata": [
+    {
+      "source_id": "code2doc_cpp",
+      "dataset": "kaanrkaraman/code2doc",
+      "files": [
+        "data/semantic_sources/raw/code2doc_cpp/hf_api_dataset.json",
+        "data/semantic_sources/raw/code2doc_cpp/hf_splits.json"
+      ]
+    },
+    {
+      "source_id": "cad_coder_high",
+      "dataset": "gudo7208/CAD-Coder",
+      "files": [
+        "data/semantic_sources/raw/cad_coder_high/hf_api_dataset.json",
+        "data/semantic_sources/raw/cad_coder_high/hf_splits.json"
+      ]
+    },
+    {
+      "source_id": "basic_shapes_object_detection",
+      "dataset": "driesverachtert/basic_shapes_object_detection",
+      "files": [
+        "data/semantic_sources/raw/basic_shapes_object_detection/hf_api_dataset.json",
+        "data/semantic_sources/raw/basic_shapes_object_detection/hf_splits.json"
+      ]
+    },
+    {
+      "source_id": "physicseval_mechanics",
+      "dataset": "IUTVanguard/PhysicsEval",
+      "files": [
+        "data/semantic_sources/raw/physicseval_mechanics/hf_api_dataset.json",
+        "data/semantic_sources/raw/physicseval_mechanics/hf_splits.json"
+      ]
+    },
+    {
+      "source_id": "visual_genome_relationships",
+      "dataset": "332F/visual_genome",
+      "files": [
+        "data/semantic_sources/raw/visual_genome_relationships/hf_api_dataset.json",
+        "data/semantic_sources/raw/visual_genome_relationships/hf_splits.json"
+      ]
+    },
+    {
+      "source_id": "mcp_official_schema",
+      "dataset": "Model Context Protocol official specification",
+      "files": [
+        "data/semantic_sources/raw/mcp_official_schema/schema_page.html",
+        "data/semantic_sources/raw/mcp_official_schema/server_tools_page.html"
+      ]
+    }
+  ],
+  "sample_rows": [
+    {
+      "source_id": "code2doc_cpp",
+      "file": "data/semantic_sources/samples/code2doc_cpp/cpp_filtered_rare_semantics.jsonl",
+      "records": 35,
+      "notes": "Filtered language=C++ from paged dataset viewer rows."
+    },
+    {
+      "source_id": "cad_coder_high",
+      "file": "data/semantic_sources/samples/cad_coder_high/rows_0000.json",
+      "records": 30
+    },
+    {
+      "source_id": "basic_shapes_object_detection",
+      "file": "data/semantic_sources/samples/basic_shapes_object_detection/rows_0000.json",
+      "records": 30
+    },
+    {
+      "source_id": "physicseval_mechanics",
+      "file": "data/semantic_sources/samples/physicseval_mechanics/rows_0000.json",
+      "records": 50
+    }
+  ],
+  "converted_candidates": [
+    {
+      "file": "data/semantic_sources/converted/lm/code2doc_cpp_initial_candidates.jsonl",
+      "records": 35,
+      "semantic_direction": "c++ development semantics",
+      "stage_candidate": "initial",
+      "review_status": "pending_user_review"
+    },
+    {
+      "file": "data/semantic_sources/converted/lm/cad_coder_initial_candidates.jsonl",
+      "records": 30,
+      "semantic_direction": "cad and geometric object semantics",
+      "stage_candidate": "initial",
+      "review_status": "pending_user_review"
+    },
+    {
+      "file": "data/semantic_sources/converted/lm/physicseval_motion_initial_candidates.jsonl",
+      "records": 22,
+      "semantic_direction": "basic geometric motion semantics",
+      "stage_candidate": "initial",
+      "review_status": "pending_user_review"
+    },
+    {
+      "file": "data/semantic_sources/converted/vision/basic_shapes_detection_initial_candidates.jsonl",
+      "records": 30,
+      "semantic_direction": "image recognition semantics",
+      "stage_candidate": "initial",
+      "review_status": "pending_user_review"
+    },
+    {
+      "file": "data/semantic_sources/converted/kg/basic_shapes_geometry_triples.tsv",
+      "records": 180,
+      "semantic_direction": "image recognition and geometry triples",
+      "stage_candidate": "initial",
+      "review_status": "pending_user_review"
+    }
+  ],
+  "next_steps": [
+    "Review converted candidate files manually.",
+    "Approve or reject each source for initial rare-critical training.",
+    "Sync approved local samples to remote training host.",
+    "Only then create training profiles and start formal initial training."
+  ]
+}

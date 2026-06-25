@@ -1,0 +1,74 @@
+#include "golden_loader.hpp"
+#include "test_assert.hpp"
+
+#include <minmind/math.hpp>
+
+#include <cmath>
+
+namespace minmind::tests {
+namespace {
+
+void RequireClose(float actual, float expected, float tolerance)
+{
+    MINMIND_REQUIRE(std::isfinite(actual));
+    MINMIND_REQUIRE(std::abs(actual - expected) <= tolerance);
+}
+
+} // namespace
+
+void TransformerBlockMatchesGoldenFixture()
+{
+    const GoldenFixture fixture = LoadGoldenFixture("testdata/golden/phase0_block.json");
+    MINMIND_REQUIRE(fixture.name == "phase0_block");
+    MINMIND_REQUIRE(fixture.seq_len == 2);
+    MINMIND_REQUIRE(fixture.hidden_size == 4);
+    MINMIND_REQUIRE(fixture.num_heads == 1);
+    MINMIND_REQUIRE(fixture.intermediate_size == 4);
+
+    const std::vector<float> attn_input = RmsNorm(
+        fixture.block_input,
+        fixture.attn_norm_weight,
+        fixture.seq_len,
+        fixture.hidden_size,
+        static_cast<float>(fixture.eps));
+    const std::vector<float> attn_output = CausalSelfAttentionNoCache(
+        attn_input,
+        fixture.q_weight,
+        fixture.k_weight,
+        fixture.v_weight,
+        fixture.o_weight,
+        fixture.seq_len,
+        fixture.hidden_size,
+        fixture.num_heads,
+        static_cast<float>(fixture.rope_theta));
+
+    MINMIND_REQUIRE(attn_output.size() == fixture.block_attention_output.size());
+    for (std::size_t i = 0; i < attn_output.size(); ++i) {
+        RequireClose(attn_output[i], fixture.block_attention_output[i], 1e-5f);
+    }
+
+    const std::vector<float> output = TransformerBlockNoCache(
+        fixture.block_input,
+        fixture.attn_norm_weight,
+        fixture.ffn_norm_weight,
+        fixture.q_weight,
+        fixture.k_weight,
+        fixture.v_weight,
+        fixture.o_weight,
+        fixture.gate_weight,
+        fixture.up_weight,
+        fixture.down_weight,
+        fixture.seq_len,
+        fixture.hidden_size,
+        fixture.num_heads,
+        fixture.intermediate_size,
+        static_cast<float>(fixture.eps),
+        static_cast<float>(fixture.rope_theta));
+
+    MINMIND_REQUIRE(output.size() == fixture.block_output.size());
+    for (std::size_t i = 0; i < output.size(); ++i) {
+        RequireClose(output[i], fixture.block_output[i], 1e-5f);
+    }
+}
+
+} // namespace minmind::tests

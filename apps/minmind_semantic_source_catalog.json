@@ -1,0 +1,147 @@
+{
+  "schema_version": "minmind_semantic_source_catalog_v1",
+  "purpose": "Track online semantic datasets before download, conversion, approval, and formal training.",
+  "formal_training_policy": {
+    "download_is_not_training_approval": true,
+    "user_review_required_before_training": true,
+    "default_download_scope": "metadata_or_small_sample",
+    "initial_training_focus": "rare critical semantic samples"
+  },
+  "target_semantic_directions": [
+    "c++ development semantics",
+    "image development semantics",
+    "image recognition semantics",
+    "cad and geometric object semantics",
+    "mcp tool capability definitions",
+    "basic geometric motion semantics"
+  ],
+  "sources": [
+    {
+      "id": "code2doc_cpp",
+      "direction": "c++ development semantics",
+      "name": "kaanrkaraman/code2doc",
+      "url": "https://huggingface.co/datasets/kaanrkaraman/code2doc",
+      "source_type": "huggingface_dataset",
+      "license": "pending_review",
+      "known_size": {
+        "total_pairs": 13358,
+        "cpp_pairs": 163
+      },
+      "recommended_initial_use": "Select high-quality C++ function-documentation pairs for API intent and implementation semantics.",
+      "download_priority": 1,
+      "download_scope": "C++ subset only",
+      "training_stage_candidate": "initial",
+      "status": "candidate_pending_download"
+    },
+    {
+      "id": "basic_shapes_object_detection",
+      "direction": "image recognition semantics",
+      "name": "driesverachtert/basic_shapes_object_detection",
+      "url": "https://huggingface.co/datasets/driesverachtert/basic_shapes_object_detection",
+      "source_type": "huggingface_dataset",
+      "license": "apache-2.0",
+      "known_size": {
+        "rows": 1030,
+        "file_size_mb": 1.7
+      },
+      "recommended_initial_use": "Use square/circle/triangle labels and COCO-format boxes for geometry-aware image recognition smoke and initial semantics.",
+      "download_priority": 1,
+      "download_scope": "full dataset is small; metadata and image samples first",
+      "training_stage_candidate": "initial",
+      "status": "candidate_pending_download"
+    },
+    {
+      "id": "cad_coder_high",
+      "direction": "cad and geometric object semantics",
+      "name": "gudo7208/CAD-Coder",
+      "url": "https://huggingface.co/datasets/gudo7208/CAD-Coder",
+      "source_type": "huggingface_dataset",
+      "license": "apache-2.0",
+      "known_size": {
+        "high_quality_samples": 8177,
+        "cot_samples": 1503,
+        "total_samples": 250031
+      },
+      "recommended_initial_use": "Prefer high-quality and CoT subsets for sketch, extrusion, coordinate, and CadQuery operation semantics.",
+      "download_priority": 1,
+      "download_scope": "cad_data_train_high and cad_data_train_cot samples only",
+      "training_stage_candidate": "initial",
+      "status": "candidate_pending_download"
+    },
+    {
+      "id": "mcp_official_schema",
+      "direction": "mcp tool capability definitions",
+      "name": "Model Context Protocol official specification schema",
+      "url": "https://modelcontextprotocol.io/specification",
+      "source_type": "official_spec",
+      "license": "pending_review",
+      "known_size": {
+        "records": "schema_and_docs"
+      },
+      "recommended_initial_use": "Extract tool definitions, tool call contracts, resource contracts, result fields, and error handling semantics.",
+      "download_priority": 1,
+      "download_scope": "schema pages and current codex-lan-agent tools/list output",
+      "training_stage_candidate": "initial",
+      "status": "candidate_pending_download"
+    },
+    {
+      "id": "physicseval_mechanics",
+      "direction": "basic geometric motion semantics",
+      "name": "IUTVanguard/PhysicsEval",
+      "url": "https://huggingface.co/datasets/IUTVanguard/PhysicsEval",
+      "source_type": "huggingface_dataset",
+      "license": "pending_review",
+      "known_size": {
+        "total_problems": 19609,
+        "train_samples": 17647,
+        "test_samples": 1962
+      },
+      "recommended_initial_use": "Filter mechanics and kinematics examples for translation, rotation, velocity, acceleration, force, and constraint semantics.",
+      "download_priority": 2,
+      "download_scope": "mechanics and kinematics small sample only",
+      "training_stage_candidate": "initial",
+      "status": "candidate_pending_download"
+    },
+    {
+      "id": "visual_genome_relationships",
+      "direction": "image recognition semantics",
+      "name": "332F/visual_genome",
+      "url": "https://huggingface.co/datasets/332F/visual_genome",
+      "source_type": "huggingface_dataset",
+      "license": "cc-by-4.0",
+      "known_size": {
+        "images": 108077,
+        "object_instances": 3800000,
+        "attributes": 2800000,
+        "relationships": 2300000
+      },
+      "recommended_initial_use": "Use only a reviewed object-attribute-relation slice for image relationship semantics; do not download full images initially.",
+      "download_priority": 3,
+      "download_scope": "metadata slice only",
+      "training_stage_candidate": "middle",
+      "status": "candidate_pending_user_scope"
+    }
+  ],
+  "acquisition_steps": [
+    {
+      "step": 1,
+      "action": "Confirm each source license and download path.",
+      "status": "in_progress"
+    },
+    {
+      "step": 2,
+      "action": "Download only small samples or metadata into data/semantic_sources.",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "action": "Convert samples into LM records, KG triples, and tool capability records.",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "action": "Run manual user review before any formal training.",
+      "status": "pending"
+    }
+  ]
+}

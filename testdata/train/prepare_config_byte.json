@@ -1,0 +1,9 @@
+{
+  "input": "CMakeLists.txt",
+  "output": "build/prepared_byte_config_cli.ctest.jsonl",
+  "tokenizer": "byte",
+  "vocab_size": 16,
+  "vocab_out": "build/prepared_byte_config_cli.ctest.vocab",
+  "seq_len": 8,
+  "max_samples": 2
+}

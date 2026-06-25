@@ -1,0 +1,240 @@
+{
+  "schema_version": "minmind_training_audit_registry_v1",
+  "policy": {
+    "formal_training_requires_user_dataset_approval": true,
+    "training_stage_order": [
+      "initial",
+      "middle",
+      "base",
+      "incremental"
+    ],
+    "engineering_validation_runs_are_not_formal_training": true,
+    "manual_review_required_fields": [
+      "dataset_id",
+      "dataset_source",
+      "dataset_path",
+      "task_type",
+      "stage",
+      "sample_or_triple_count",
+      "quality_gate",
+      "approval_status",
+      "checkpoint_path",
+      "validation_logs"
+    ]
+  },
+  "dataset_review_registry": "apps/minmind_dataset_review_queue.json",
+  "manual_review_note": "docs/notes/training_dataset_audit_log.md",
+  "completed_runs": [
+    {
+      "run_id": "hf_smoke_tiny_shakespeare_lm_512",
+      "status": "completed",
+      "run_class": "engineering_validation",
+      "approval_status": "not_formal_training",
+      "task_type": "lm",
+      "dataset_id": "tiny_shakespeare",
+      "dataset_path": "data/hf_datasets_flat/tiny_shakespeare/input.txt",
+      "stage": "none",
+      "model_family": "tiny_lm_head",
+      "scale": {
+        "samples": 512,
+        "sequence_length": 32,
+        "vocab_size": 66
+      },
+      "output_dir": "data/processed/hf_smoke",
+      "checkpoint_path": "data/processed/hf_smoke/tiny_shakespeare_lm_512.mmckpt",
+      "validation_summary": {
+        "inspect_checkpoint_weight_count": 264
+      },
+      "remote_logs": [
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_175413.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_175416.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_175418.log"
+      ]
+    },
+    {
+      "run_id": "hf_smoke_fb15k237_kg_5000",
+      "status": "completed",
+      "run_class": "engineering_validation",
+      "approval_status": "not_formal_training",
+      "task_type": "kg",
+      "dataset_id": "fb15k_237",
+      "dataset_path": "data/hf_datasets_flat/FB15k-237/data/train.txt",
+      "stage": "none",
+      "model_family": "TransE_DistMult_RotatE_RGCN",
+      "scale": {
+        "triples": 5000,
+        "entities": 5378,
+        "relations": 228,
+        "dim": 16,
+        "epochs": 1
+      },
+      "output_dir": "data/processed/hf_smoke",
+      "validation_summary": {
+        "transe_loss": 0.76546824,
+        "distmult_loss": 0.998398364,
+        "rotate_loss": 0.881697059,
+        "rgcn_loss": 0.124760814,
+        "checkpoint_inspected": true
+      },
+      "remote_logs": []
+    },
+    {
+      "run_id": "hf_scale20k_fb15k237_kg",
+      "status": "completed",
+      "run_class": "engineering_validation",
+      "approval_status": "not_formal_training",
+      "task_type": "kg",
+      "dataset_id": "fb15k_237",
+      "dataset_path": "data/hf_datasets_flat/FB15k-237/data/train.txt",
+      "stage": "none",
+      "model_family": "TransE_DistMult_RotatE_RGCN",
+      "scale": {
+        "triples": 20000,
+        "entities": 10494,
+        "relations": 237,
+        "dim": 16,
+        "epochs": 1
+      },
+      "output_dir": "data/processed/hf_scale20k",
+      "validation_summary": {
+        "transe_loss": 0.636256814,
+        "distmult_loss": 0.9951424,
+        "rotate_loss": 1.34595871,
+        "rgcn_loss": 0.0685757846,
+        "checkpoint_inspected": true
+      },
+      "remote_logs": [
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_175420.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_175448.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_175450.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_175452.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_175454.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_175457.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_175459.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_175502.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_175504.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_175511.log"
+      ]
+    },
+    {
+      "run_id": "hf_scale50k_fb15k237_kg",
+      "status": "completed",
+      "run_class": "engineering_validation",
+      "approval_status": "not_formal_training",
+      "task_type": "kg",
+      "dataset_id": "fb15k_237",
+      "dataset_path": "data/hf_datasets_flat/FB15k-237/data/train.txt",
+      "stage": "none",
+      "model_family": "TransE_DistMult_RotatE_RGCN",
+      "scale": {
+        "triples": 50000,
+        "entities": 12838,
+        "relations": 237,
+        "dim": 16,
+        "epochs": 1
+      },
+      "output_dir": "data/processed/hf_scale50k",
+      "validation_summary": {
+        "transe_loss": 0.566535532,
+        "distmult_loss": 0.981765389,
+        "rotate_loss": 1.01244116,
+        "rgcn_loss": 0.0677936152,
+        "checkpoint_inspected": true
+      },
+      "remote_logs": [
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_182321.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_182322.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_182323.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_182325.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_182326.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_182327.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_182329.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_182332.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_182334.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260525_182344.log"
+      ]
+    },
+    {
+      "run_id": "hf_scale100k_fb15k237_kg_direct",
+      "status": "completed",
+      "run_class": "engineering_validation",
+      "approval_status": "not_formal_training",
+      "task_type": "kg",
+      "dataset_id": "fb15k_237",
+      "dataset_path": "data/hf_datasets_flat/FB15k-237/data/train.txt",
+      "stage": "none",
+      "model_family": "TransE_DistMult_RotatE_RGCN",
+      "scale": {
+        "triples": 100000,
+        "entities": 13935,
+        "relations": 237,
+        "dim": 16,
+        "epochs": 1
+      },
+      "output_dir": "data/processed/hf_scale100k",
+      "validation_summary": {
+        "transe_loss": 0.468339801,
+        "distmult_loss": 0.942154348,
+        "rotate_loss": 0.809041023,
+        "rgcn_loss": 0.0672814995,
+        "checkpoint_inspected": true
+      },
+      "remote_logs": [
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260526_103537.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260526_103538.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260526_103540.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260526_103541.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260526_103542.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260526_103544.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260526_103545.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260526_103550.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260526_103552.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260526_103612.log"
+      ]
+    },
+    {
+      "run_id": "hf_scale100k_fb15k237_profile_pipeline",
+      "status": "completed",
+      "run_class": "engineering_validation",
+      "approval_status": "not_formal_training",
+      "task_type": "kg",
+      "dataset_id": "fb15k_237",
+      "dataset_path": "data/processed/hf_scale100k/fb15k237_train_100k.tsv",
+      "stage": "none",
+      "model_family": "kg_pipeline_and_rgcn_pipeline",
+      "profile_path": "data/processed/hf_scale100k/minmind_hf_scale100k_profiles.json",
+      "scale": {
+        "triples": 100000,
+        "entities": 14541,
+        "relations": 237,
+        "dim": 16,
+        "epochs": 1
+      },
+      "output_dir": "data/processed/hf_scale100k",
+      "validation_summary": {
+        "transe_pipeline_checkpoint_inspected": true,
+        "distmult_pipeline_checkpoint_inspected": true,
+        "rotate_pipeline_checkpoint_inspected": true,
+        "rgcn_pipeline_checkpoint_inspected": true
+      },
+      "remote_logs": [
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260526_104322.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260526_104323.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260526_104325.log",
+        "D:/Codex-WorkDir/Sean_WorkDir/codex-lan-agent/logs/run_script_20260526_104330.log"
+      ]
+    }
+  ],
+  "pending_formal_training_plan": {
+    "status": "blocked_until_user_dataset_review",
+    "initial_stage_required_inputs": [
+      "C++ development semantics",
+      "image development semantics",
+      "image recognition semantics",
+      "CAD/geometric object semantics",
+      "MCP tool capability definitions",
+      "basic geometric motion semantics"
+    ],
+    "next_manual_review_action": "Select approved source datasets and sample limits for initial rare critical semantic training."
+  }
+}

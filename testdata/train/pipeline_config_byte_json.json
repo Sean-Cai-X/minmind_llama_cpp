@@ -1,0 +1,13 @@
+{
+  "prepare_input": "CMakeLists.txt",
+  "prepare_output": "build/pipeline_byte_json_cli.ctest.jsonl",
+  "prepare_tokenizer": "byte",
+  "prepare_vocab_size": 16,
+  "prepare_vocab_out": "build/pipeline_byte_json_cli.ctest.vocab",
+  "prepare_seq_len": 8,
+  "prepare_max_samples": 2,
+  "train_checkpoint": "build/pipeline_byte_json_cli.ctest.ckpt",
+  "train_vocab_size": 16,
+  "train_epochs": 1,
+  "train_learning_rate": 0.05
+}

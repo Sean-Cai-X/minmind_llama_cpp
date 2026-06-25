@@ -1,0 +1,7 @@
+{
+  "data": "testdata/train/tiny_lm_vocab6.jsonl",
+  "checkpoint": "build/tiny_lm_vocab6_config_cli.ctest.ckpt",
+  "vocab_size": 6,
+  "epochs": 1,
+  "learning_rate": 0.05
+}

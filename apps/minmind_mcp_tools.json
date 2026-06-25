@@ -1,0 +1,368 @@
+{
+  "tools": [
+    {
+      "name": "minmind_prepare_text",
+      "command": "minmind_cli",
+      "args": [
+        "prepare-text",
+        "--input",
+        "{input}",
+        "--output",
+        "{output}",
+        "--tokenizer",
+        "{tokenizer}",
+        "--vocab-size",
+        "{vocab_size}",
+        "--seq-len",
+        "{seq_len}",
+        "--max-samples",
+        "{max_samples}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_inspect_dataset",
+      "command": "minmind_cli",
+      "args": [
+        "inspect-dataset",
+        "--data",
+        "{data}",
+        "--vocab-size",
+        "{vocab_size}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_inspect_text",
+      "command": "minmind_cli",
+      "args": [
+        "inspect-text",
+        "--input",
+        "{input}",
+        "--tokenizer",
+        "{tokenizer}",
+        "--vocab-size",
+        "{vocab_size}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_train_lm",
+      "command": "minmind_cli",
+      "args": [
+        "train",
+        "--data",
+        "{data}",
+        "--checkpoint",
+        "{checkpoint}",
+        "--vocab-size",
+        "{vocab_size}",
+        "--epochs",
+        "{epochs}",
+        "--learning-rate",
+        "{learning_rate}",
+        "--checkpoint",
+        "{checkpoint}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_train_lm_profile",
+      "command": "minmind_cli",
+      "args": [
+        "train",
+        "--profile",
+        "{profile}",
+        "--profile-name",
+        "{profile_name}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_lm_pipeline_profile",
+      "command": "minmind_cli",
+      "args": [
+        "pipeline",
+        "--profile",
+        "{profile}",
+        "--profile-name",
+        "{profile_name}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_inspect_checkpoint",
+      "command": "minmind_cli",
+      "args": [
+        "inspect-checkpoint",
+        "--checkpoint",
+        "{checkpoint}",
+        "--vocab-size",
+        "{vocab_size}",
+        "--hidden-size",
+        "{hidden_size}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_generate_checkpoint",
+      "command": "minmind_cli",
+      "args": [
+        "generate-checkpoint",
+        "--checkpoint",
+        "{checkpoint}",
+        "--input",
+        "{input}",
+        "--vocab-size",
+        "{vocab_size}",
+        "--hidden-size",
+        "{hidden_size}",
+        "--max-new",
+        "{max_new}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_validate_lm_profile",
+      "command": "minmind_cli",
+      "args": [
+        "validate-lm-profile",
+        "--profile",
+        "{profile}",
+        "--profile-name",
+        "{profile_name}",
+        "--input",
+        "{input}",
+        "--max-new",
+        "{max_new}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_train_kg",
+      "command": "minmind_cli",
+      "args": [
+        "train-kg",
+        "--data",
+        "{data}",
+        "--model",
+        "{model}",
+        "--entities",
+        "{entities}",
+        "--relations",
+        "{relations}",
+        "--dim",
+        "{dim}",
+        "--epochs",
+        "{epochs}",
+        "--learning-rate",
+        "{learning_rate}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_prepare_kg",
+      "command": "minmind_cli",
+      "args": [
+        "prepare-kg",
+        "--input",
+        "{input}",
+        "--output",
+        "{output}",
+        "--entity-map",
+        "{entity_map}",
+        "--relation-map",
+        "{relation_map}",
+        "--max-triples",
+        "{max_triples}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_prepare_kg_pipeline",
+      "command": "minmind_cli",
+      "args": [
+        "prepare-kg-pipeline",
+        "--profile",
+        "{profile}",
+        "--profile-name",
+        "{profile_name}",
+        "--target",
+        "{target}",
+        "--model",
+        "{model}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_inspect_kg_dataset",
+      "command": "minmind_cli",
+      "args": [
+        "inspect-kg-dataset",
+        "--data",
+        "{data}",
+        "--entities",
+        "{entities}",
+        "--relations",
+        "{relations}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_train_kg_profile",
+      "command": "minmind_cli",
+      "args": [
+        "train-kg",
+        "--profile",
+        "{profile}",
+        "--profile-name",
+        "{profile_name}",
+        "--model",
+        "{model}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_kg_pipeline_profile",
+      "command": "minmind_cli",
+      "args": [
+        "kg-pipeline",
+        "--profile",
+        "{profile}",
+        "--profile-name",
+        "{profile_name}",
+        "--model",
+        "{model}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_validate_kg_profile",
+      "command": "minmind_cli",
+      "args": [
+        "validate-kg-profile",
+        "--profile",
+        "{profile}",
+        "--profile-name",
+        "{profile_name}",
+        "--model",
+        "{model}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_inspect_kg_checkpoint",
+      "command": "minmind_cli",
+      "args": [
+        "inspect-kg-checkpoint",
+        "--checkpoint",
+        "{checkpoint}",
+        "--model",
+        "{model}",
+        "--entities",
+        "{entities}",
+        "--relations",
+        "{relations}",
+        "--dim",
+        "{dim}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_train_rgcn",
+      "command": "minmind_cli",
+      "args": [
+        "train-rgcn",
+        "--data",
+        "{data}",
+        "--nodes",
+        "{nodes}",
+        "--relations",
+        "{relations}",
+        "--dim",
+        "{dim}",
+        "--epochs",
+        "{epochs}",
+        "--learning-rate",
+        "{learning_rate}",
+        "--checkpoint",
+        "{checkpoint}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_train_rgcn_profile",
+      "command": "minmind_cli",
+      "args": [
+        "train-rgcn",
+        "--profile",
+        "{profile}",
+        "--profile-name",
+        "{profile_name}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_rgcn_pipeline_profile",
+      "command": "minmind_cli",
+      "args": [
+        "rgcn-pipeline",
+        "--profile",
+        "{profile}",
+        "--profile-name",
+        "{profile_name}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_validate_rgcn_profile",
+      "command": "minmind_cli",
+      "args": [
+        "validate-rgcn-profile",
+        "--profile",
+        "{profile}",
+        "--profile-name",
+        "{profile_name}",
+        "--json"
+      ],
+      "output": "json"
+    },
+    {
+      "name": "minmind_inspect_rgcn_checkpoint",
+      "command": "minmind_cli",
+      "args": [
+        "inspect-rgcn-checkpoint",
+        "--checkpoint",
+        "{checkpoint}",
+        "--nodes",
+        "{nodes}",
+        "--relations",
+        "{relations}",
+        "--dim",
+        "{dim}",
+        "--json"
+      ],
+      "output": "json"
+    }
+  ]
+}

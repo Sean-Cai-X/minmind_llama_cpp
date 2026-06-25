@@ -1,0 +1,20 @@
+{
+  "name": "phase0_rmsnorm",
+  "source": "manual scaffold; replace by running scripts/generate_minimind_golden.py after Python env is available",
+  "dtype": "float32",
+  "rows": 2,
+  "cols": 4,
+  "eps": 0.000001,
+  "rmsnorm_input": [1.0, 2.0, 3.0, 4.0, -1.0, 0.0, 1.0, 2.0],
+  "rmsnorm_weight": [1.0, 1.5, 0.5, 2.0],
+  "rmsnorm_output": [
+    0.365148347326888,
+    1.09544504198067,
+    0.547722520990333,
+    2.92118677861511,
+    -0.816496308762335,
+    0.0,
+    0.408248154381168,
+    3.26598523504934
+  ]
+}

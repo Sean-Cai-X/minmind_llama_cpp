@@ -1,0 +1,130 @@
+{
+  "schema_version": "minmind_dataset_review_queue_v1",
+  "review_policy": {
+    "approval_required_before_formal_training": true,
+    "engineering_validation_datasets_are_not_formal_training_data": true,
+    "stage_order": [
+      "initial",
+      "middle",
+      "base",
+      "incremental"
+    ]
+  },
+  "stage_definitions": {
+    "initial": {
+      "label": "initial core training",
+      "data_value": "rare critical data",
+      "model_goal": "core model",
+      "approval_focus": [
+        "criticality",
+        "low noise",
+        "core relation coverage",
+        "manual review"
+      ]
+    },
+    "middle": {
+      "label": "middle training",
+      "data_value": "moderately scarce important data",
+      "model_goal": "foundation model",
+      "approval_focus": [
+        "domain coverage",
+        "data balance",
+        "noise control",
+        "checkpoint comparison"
+      ]
+    },
+    "base": {
+      "label": "base business training",
+      "data_value": "main ordinary business data",
+      "model_goal": "business model",
+      "approval_focus": [
+        "scale",
+        "normal scenario coverage",
+        "business validation",
+        "regression checks"
+      ]
+    },
+    "incremental": {
+      "label": "incremental training",
+      "data_value": "new, corrective, or specialized data",
+      "model_goal": "controlled model expansion",
+      "approval_focus": [
+        "rollback path",
+        "small batch validation",
+        "targeted metrics",
+        "checkpoint lineage"
+      ]
+    }
+  },
+  "current_candidates": [
+    {
+      "id": "tiny_shakespeare",
+      "local_path": "data/hf_datasets_flat/tiny_shakespeare/input.txt",
+      "task_type": "lm",
+      "current_role": "engineering_validation_only",
+      "suggested_stage": "none",
+      "review_status": "pending_user_review",
+      "notes": "Useful for tokenizer, prepare-text, train, inspect smoke validation; not a business training dataset."
+    },
+    {
+      "id": "wikitext_2_raw",
+      "local_path": "data/hf_datasets_flat/wikitext/wikitext-2-raw-v1",
+      "task_type": "lm",
+      "current_role": "candidate_general_language_validation",
+      "suggested_stage": "middle",
+      "review_status": "pending_user_review",
+      "notes": "Potential general language baseline data; requires discussion before any formal training use."
+    },
+    {
+      "id": "wikitext_103_raw",
+      "local_path": "data/hf_datasets_flat/wikitext/wikitext-103-raw-v1",
+      "task_type": "lm",
+      "current_role": "candidate_large_general_language_validation",
+      "suggested_stage": "base",
+      "review_status": "pending_user_review",
+      "notes": "Large general text source; only useful after core and middle-stage data are approved."
+    },
+    {
+      "id": "fb15k_237",
+      "local_path": "data/hf_datasets_flat/FB15k-237/data/train.txt",
+      "task_type": "kg",
+      "current_role": "engineering_validation_and_candidate_kg_baseline",
+      "suggested_stage": "middle",
+      "review_status": "pending_user_review",
+      "notes": "Already used for 20k, 50k, and 100k KG/R-GCN engineering validation; formal use requires relation-value review."
+    },
+    {
+      "id": "wn18rr",
+      "local_path": "data/hf_datasets_flat/wn18rr/data/data-00000-of-00001.parquet",
+      "task_type": "kg",
+      "current_role": "candidate_kg_semantic_relation_validation",
+      "suggested_stage": "middle",
+      "review_status": "pending_user_review",
+      "notes": "Potential KG relation benchmark; requires conversion and approval before training."
+    },
+    {
+      "id": "user_core_business_dataset",
+      "local_path": "",
+      "task_type": "lm_or_kg",
+      "current_role": "required_formal_initial_training_source",
+      "suggested_stage": "initial",
+      "review_status": "missing_user_input",
+      "notes": "This should contain rare critical business data for the core model; path, format, and review rules need user confirmation."
+    },
+    {
+      "id": "user_main_business_dataset",
+      "local_path": "",
+      "task_type": "lm_or_kg",
+      "current_role": "required_formal_base_training_source",
+      "suggested_stage": "base",
+      "review_status": "missing_user_input",
+      "notes": "This should contain ordinary main business data for the business model; path, format, and target scale need user confirmation."
+    }
+  ],
+  "approval_questions": [
+    "Which datasets are allowed to move from engineering validation to formal training?",
+    "Which records or relation types are rare critical data for initial core training?",
+    "Which datasets should be excluded from formal training even if they are useful for smoke tests?",
+    "What validation examples should gate each stage before moving to the next stage?"
+  ]
+}

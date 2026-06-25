@@ -1,0 +1,171 @@
+{
+  "host_profile": {
+    "logical_processors": 20,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "execution_mode": "cpu_first_gpu_optional"
+  },
+  "datasets": {
+    "lm_raw_text": {
+      "path": "data/raw/tiny-shakespeare-input.txt",
+      "bytes": 1115394,
+      "role": "local_text_prepare_source"
+    },
+    "lm_processed_smoke": {
+      "path": "data/processed/tiny_shakespeare_vocab4_seq16_128.jsonl",
+      "samples": 128,
+      "sequence_length": 16,
+      "role": "local_lm_smoke_train"
+    },
+    "kg_smoke": {
+      "path": "testdata/kg/tiny_kg.tsv",
+      "triples": 4,
+      "entities": 4,
+      "relations": 2,
+      "role": "local_kg_smoke_train"
+    },
+    "kg_named_smoke": {
+      "path": "testdata/kg/tiny_kg_named.tsv",
+      "triples": 4,
+      "role": "local_kg_prepare_source"
+    }
+  },
+  "profiles": {
+    "lm_smoke_cpu": {
+      "command": "train",
+      "data": "data/processed/tiny_shakespeare_vocab4_seq16_128.jsonl",
+      "vocab_size": 4,
+      "epochs": 1,
+      "learning_rate": 0.05,
+      "checkpoint": "build/tiny_shakespeare_vocab4_local.ckpt",
+      "target_runtime": "seconds",
+      "purpose": "compile_and_pipeline_validation"
+    },
+    "lm_inspect_text_smoke_cpu": {
+      "command": "inspect-text",
+      "input": "data/raw/tiny-shakespeare-input.txt",
+      "tokenizer": "byte",
+      "vocab_size": 256,
+      "target_runtime": "seconds",
+      "purpose": "local_raw_text_dataset_validation"
+    },
+    "lm_local_cpu": {
+      "command": "prepare-text_then_train",
+      "input": "data/raw/tiny-shakespeare-input.txt",
+      "tokenizer": "byte",
+      "vocab_size": 256,
+      "sequence_length": 32,
+      "max_samples": 2048,
+      "epochs": 1,
+      "learning_rate": 0.01,
+      "target_runtime": "minutes",
+      "purpose": "local_loss_curve_validation"
+    },
+    "lm_pipeline_smoke_cpu": {
+      "command": "pipeline",
+      "input": "CMakeLists.txt",
+      "output": "build/lm_pipeline_smoke_cpu.ctest.jsonl",
+      "tokenizer": "byte",
+      "vocab_size": 16,
+      "vocab_out": "build/lm_pipeline_smoke_cpu.ctest.vocab",
+      "sequence_length": 8,
+      "max_samples": 2,
+      "checkpoint": "build/lm_pipeline_smoke_cpu.ctest.ckpt",
+      "epochs": 1,
+      "learning_rate": 0.05,
+      "target_runtime": "seconds",
+      "purpose": "local_prepare_train_inspect_pipeline_validation"
+    },
+    "kg_smoke_cpu": {
+      "command": "train-kg",
+      "data": "testdata/kg/tiny_kg.tsv",
+      "models": [
+        "transe",
+        "distmult",
+        "rotate"
+      ],
+      "entities": 4,
+      "relations": 2,
+      "dim": 3,
+      "epochs": 2,
+      "learning_rate": 0.01,
+      "checkpoint": "build/kg_smoke_cpu.ctest.ckpt",
+      "target_runtime": "seconds",
+      "purpose": "kg_cli_and_json_validation"
+    },
+    "kg_prepare_named_smoke_cpu": {
+      "command": "prepare-kg",
+      "input": "testdata/kg/tiny_kg_named.tsv",
+      "output": "build/kg_named_smoke_cpu.ctest.tsv",
+      "entity_map": "build/kg_named_smoke_cpu.entities.ctest.tsv",
+      "relation_map": "build/kg_named_smoke_cpu.relations.ctest.tsv",
+      "max_triples": 0,
+      "target_runtime": "seconds",
+      "purpose": "kg_named_triples_to_numeric_validation"
+    },
+    "kg_prepare_pipeline_smoke_cpu": {
+      "command": "prepare-kg-pipeline",
+      "input": "testdata/kg/tiny_kg_named.tsv",
+      "output": "build/kg_prepare_pipeline_smoke_cpu.ctest.tsv",
+      "entity_map": "build/kg_prepare_pipeline_smoke_cpu.entities.ctest.tsv",
+      "relation_map": "build/kg_prepare_pipeline_smoke_cpu.relations.ctest.tsv",
+      "max_triples": 0,
+      "entities": 4,
+      "relations": 2,
+      "dim": 3,
+      "epochs": 2,
+      "learning_rate": 0.01,
+      "checkpoint": "build/kg_prepare_pipeline_smoke_cpu.ctest.ckpt",
+      "target_runtime": "seconds",
+      "purpose": "kg_named_prepare_train_inspect_pipeline_validation"
+    },
+    "rgcn_prepare_pipeline_smoke_cpu": {
+      "command": "prepare-kg-pipeline",
+      "input": "testdata/kg/tiny_kg_named.tsv",
+      "output": "build/rgcn_prepare_pipeline_smoke_cpu.ctest.tsv",
+      "entity_map": "build/rgcn_prepare_pipeline_smoke_cpu.entities.ctest.tsv",
+      "relation_map": "build/rgcn_prepare_pipeline_smoke_cpu.relations.ctest.tsv",
+      "max_triples": 0,
+      "entities": 4,
+      "relations": 2,
+      "dim": 3,
+      "epochs": 2,
+      "learning_rate": 0.01,
+      "checkpoint": "build/rgcn_prepare_pipeline_smoke_cpu.ctest.ckpt",
+      "target_runtime": "seconds",
+      "purpose": "kg_named_prepare_rgcn_train_inspect_pipeline_validation"
+    },
+    "kg_local_cpu": {
+      "command": "train-kg",
+      "max_triples": 50000,
+      "max_entities": 20000,
+      "max_relations": 2000,
+      "dim": 32,
+      "epochs": 1,
+      "learning_rate": 0.005,
+      "checkpoint": "build/kg_local_cpu.ckpt",
+      "target_runtime": "minutes",
+      "purpose": "local_embedding_sanity_train"
+    },
+    "rgcn_smoke_cpu": {
+      "command": "train-rgcn",
+      "data": "testdata/kg/tiny_kg.tsv",
+      "nodes": 4,
+      "relations": 2,
+      "dim": 3,
+      "epochs": 2,
+      "learning_rate": 0.01,
+      "checkpoint": "build/rgcn_smoke_cpu.ctest.ckpt",
+      "target_runtime": "seconds",
+      "purpose": "rgcn_relation_mean_training_validation"
+    },
+    "gpu_future_8gb": {
+      "status": "planned",
+      "max_lm_parameters": "less_than_50m",
+      "max_sequence_length": 128,
+      "max_kg_embedding_dim": 128,
+      "precision": "fp16_or_int8_when_available",
+      "purpose": "future_cuda_backend"
+    }
+  }
+}
